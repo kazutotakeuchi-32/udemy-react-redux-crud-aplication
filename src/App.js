@@ -44,15 +44,32 @@ function clickCall(){
 //   }
 // }
 const App = ()=>{
+  const profiles =[
+    {name:"Taro",age:20},
+    {name: "kazuto",age:20},
+    {name: "kazuto"}
+
+  ]
   return (
   <div>
-    <Cat/>
-    <Cat/>
-    <Cat/>
-  </div>)
+    {
+      profiles.map((profile, index)=>{
+        return <User name ={profile.name} age={profile.age} key={index}/>
+      })
+    }
+  </div>
+  )
 }
-const Cat=()=>{
-  return <div>Meow!</div>
+const User=(props)=>{
+return(
+<div>
+  <h1> hi , I am {props.name}!</h1>
+  <h1>{props.age}</h1>
+</div>
+  )
+}
+User.defaultProps ={
+  age: 1
 }
 
 export default App;
