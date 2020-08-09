@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
 import { render } from 'react-dom';
 // function App() {
 //   return (  <div className="App">Hello , world!</div>);
@@ -44,36 +43,42 @@ function clickCall(){
 //     )
 //   }
 // }
-const App = ()=>{
-  const profiles =[
-    {name:"Taro",age:20},
-    {name: "kazuto",age:20},
+const App = ()=>(<Counter/>)
 
-  ]
-  return (
-  <div>
-    {
-      profiles.map((profile, index)=>{
-        return <User name ={profile.name} age={profile.age} key={index}/>
-      })
+class Counter extends Component{
+  constructor(props){
+    super(props)
+    this.state = {count:0,name:"laz"}
+  }
+
+  handlePlusButton = ()=> {
+    if (this.state.count<20) {
+      this.setState({count: this.state.count+1})
+    }else{
+      alert("20になりました")
+      this.state.count = 0
+      this.setState({count:this.state.count})
     }
-  </div>
-  )
-}
-const User=(props)=>{
-return(
-<div>
-  <h1> hi , I am {props.name}!</h1>
-  <h1>{props.age}</h1>
-</div>
-  )
-}
-User.propTypes ={
-  name: PropTypes.string,
-  age: PropTypes.number.isRequired
-}
+  }
 
+  handleMiusButton = ()=> {
+    if (this.state.count<=0) {
+      return
+    }else{
+      this.setState({count:this.state.count-1})
+    }
+  }
 
+  render(){
+  return (
+    <React.Fragment>
+    <div>count:{this.state.count}</div>
+    <button onClick={this.handlePlusButton}>+1</button>
+    <button onClick={ this.handleMiusButton}>-1</button>
+    </React.Fragment>
+    )
+  }
+}
 // function formatDate(date) {
 //   return date.toLocaleDateString();
 // }
