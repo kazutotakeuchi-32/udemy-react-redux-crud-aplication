@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
+import {connect} from 'react-redux'
+import {increment,decrement} from '../actions'
 // function App() {
 //   return (  <div className="App">Hello , world!</div>);
 // }
@@ -48,59 +49,48 @@ function clickCall(){
 //   }
 // }
 
-const App = ()=>(< Counter></Counter>)
 
-class Counter extends Component{
-  constructor(props){
-    super(props)
-    this.state = {count:0,name:"laz"}
-  }
 
-  handlePlusButton = ()=> {
-    if (this.state.count<20) {
-      this.setState({count: this.state.count+1})
-    }else{
-      alert("20になりました")
-      this.state.count = 0
-      this.setState({count:this.state.count})
-    }
-  }
-
-  handleMiusButton = ()=> {
-    if (this.state.count<=0) {
-      return
-    }else{
-      this.setState({count:this.state.count-1})
-    }
-  }
-  Button = (props)=>{
-
-   return (
-    <React.Fragment>
-      {
-         props.buttons.map((button,index )=> {
-         return <button key={index} onClick={button.call}>{button.vl}</button>
-        })
-      }
-    </React.Fragment>)
-  }
+class App extends Component{
 
   render(){
-  return (
-    <React.Fragment>
-    <div>count:{this.state.count}</div>
+    const props = this.props
+    return (
+      <React.Fragment>
+        <div>value:{props.value}</div>
+        <button onClick={props.increment}>+1</button>
+        <button onClick={props.decrement}>-1</button>
+
+      </React.Fragment>
+      )
+  }
+
+}
+
+const mapDisspatchToProps = state=>({value:state.count.value})
+const mapDisspatchToProps = dispatch =>({
+  increment:()=>dispatch(increment()),
+  decrement:()=>dispatch(decrement())
+})
+export default connect(mapStateToProps,mapDisspatchToProps)(App)
+// Button = (props)=>{
+//   return (
+//    <React.Fragment>
+//      {
+//         props.buttons.map((button,index )=> {
+//         return <button key={index} onClick={button.call}>{button.vl}</button>
+//        })
+//      }
+//    </React.Fragment>)
+//  }
+
+{/* <div>count:{this.state.count}</div>
     <this.Button buttons={
       [
         {vl:"+1",call:this.handlePlusButton},
         {vl:"-1",call:this.handleMiusButton},
       ]
-       }key={this.state.buttons}/>
-    </React.Fragment>
-    )
-  }
-
-}
-
+       }key={this.state.buttons}/> */}
 
  {/* <button onClick={this.handlePlusButton}>+1</button>
     <button onClick={ this.handleMiusButton}>-1</button> */}
@@ -166,5 +156,3 @@ class Counter extends Component{
 //   />,
   // document.getElementById('root')
 // );
-
-export default  App;
