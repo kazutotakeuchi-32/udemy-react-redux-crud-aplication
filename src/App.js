@@ -15,6 +15,10 @@ function name(){
 //         null,
 //         "Hello,World"
 //       )
+
+
+
+
 //     );
 //   }
 // }
@@ -43,7 +47,8 @@ function clickCall(){
 //     )
 //   }
 // }
-const App = ()=>(<Counter/>)
+
+const App = ()=>(< Counter></Counter>)
 
 class Counter extends Component{
   constructor(props){
@@ -68,17 +73,37 @@ class Counter extends Component{
       this.setState({count:this.state.count-1})
     }
   }
+  Button = (props)=>{
+
+   return (
+    <React.Fragment>
+      {
+         props.buttons.map((button,index )=> {
+         return <button key={index} onClick={button.call}>{button.vl}</button>
+        })
+      }
+    </React.Fragment>)
+  }
 
   render(){
   return (
     <React.Fragment>
     <div>count:{this.state.count}</div>
-    <button onClick={this.handlePlusButton}>+1</button>
-    <button onClick={ this.handleMiusButton}>-1</button>
+    <this.Button buttons={
+      [
+        {vl:"+1",call:this.handlePlusButton},
+        {vl:"-1",call:this.handleMiusButton},
+      ]
+       }key={this.state.buttons}/>
     </React.Fragment>
     )
   }
+
 }
+
+
+ {/* <button onClick={this.handlePlusButton}>+1</button>
+    <button onClick={ this.handleMiusButton}>-1</button> */}
 // function formatDate(date) {
 //   return date.toLocaleDateString();
 // }
