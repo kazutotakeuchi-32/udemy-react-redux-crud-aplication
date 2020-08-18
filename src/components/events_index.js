@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import {readEvents} from '../actions'
 import _ from 'lodash'
+import {Link} from 'react-router-dom'
 
 
 function name(){
@@ -33,6 +34,7 @@ class EventIndex extends Component{
   render(){
     const props = this.props
     return (
+      <React.Fragment>
       <table>
         <thead>
           <tr>
@@ -45,6 +47,9 @@ class EventIndex extends Component{
           {this.readEvents()}
         </tbody>
       </table>
+      <Link to ="events/new">New Event</Link>
+      {/* <Link to ="/"></Link> */}
+      </React.Fragment>
       )
   }
 
@@ -55,6 +60,7 @@ const mapDisspatchToProps = ({ readEvents})
 export default connect(mapStateToProps,mapDisspatchToProps)(EventIndex)
 
 
+// export default EventIndex
 
 
 

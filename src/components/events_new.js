@@ -1,41 +1,30 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
-import {increment,decrement} from '../actions'
+// import {postEvent} from '../actions'
+import {Link} from 'react-router-dom'
 
 
-function name(){
-  return name
-}
 
-function clickCall(){
-  alert(dom)
-}
- const greeting = "Hi Tom!"
- const dom = `<h1 className="ff">${greeting}</h1>`
 
-class EventsIndex extends Component{
+class EventNew extends Component{
 
   render(){
     const props = this.props
     return (
       <React.Fragment>
-        <div>value:{props.value}</div>
-        <button onClick={props.increment}>+1</button>
-        <button onClick={props.decrement}>-1</button>
+        <div className="">dddddd</div>
       </React.Fragment>
       )
   }
 
 }
 
-const mapStateToProps = state=>({value:state.count.value})
-const mapDisspatchToProps = dispatch =>({
-  increment:()=>dispatch(increment()),
-  decrement:()=>dispatch(decrement())
-})
-export default connect(mapStateToProps,mapDisspatchToProps)(EventsIndex)
+// const mapDisspatchToProps = ({ postEvent})
+
+export default connect(null,null)(EventNew)
 
 
+// export default EventIndex
 
 
 
