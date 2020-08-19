@@ -5,16 +5,6 @@ import _ from 'lodash'
 import {Link} from 'react-router-dom'
 
 
-function name(){
-  return name
-}
-
-function clickCall(){
-  alert(dom)
-}
- const greeting = "Hi Tom!"
- const dom = `<h1 className="ff">${greeting}</h1>`
-
 class EventIndex extends Component{
 
   componentDidMount(){
@@ -50,7 +40,6 @@ class EventIndex extends Component{
         </tbody>
       </table>
       <Link to ="events/new">New Event</Link>
-      {/* <Link to ="/"></Link> */}
       </React.Fragment>
       )
   }
